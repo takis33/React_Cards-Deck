@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "./Card";
+import "./Deck.css";
 import axios from "axios";
 const API_BASE_URL = "https://deckofcardsapi.com/api/deck";
 
@@ -24,7 +25,7 @@ class Deck extends Component {
         throw new Error("No card remaining!");
       }
       let card = cardRes.data.cards[0];
-      console.log(cardRes.data);
+      // console.log(cardRes.data);
       this.setState(st => ({
         drawn: [
           ...st.drawn,
@@ -45,10 +46,15 @@ class Deck extends Component {
       return <Card key={c.id} name={c.name} image={c.image} />;
     });
     return (
-      <div>
-        Deck
-        <button onClick={this.getCard}>Get Card!</button>
-        {cards}
+      <div className="Deck">
+        <h1 className="Deck-title">Card Dealer</h1>
+        <h2 className="Deck-title subtitle">
+          ◆ A little demo made with React ◆
+        </h2>
+        <button className="Deck-btn" onClick={this.getCard}>
+          Get Card!
+        </button>
+        <div className="Deck-cardarea">{cards}</div>
       </div>
     );
   }
